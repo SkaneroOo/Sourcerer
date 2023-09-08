@@ -1,8 +1,0 @@
-{
-  "include": [
-    "Cargo.toml",
-    "file.txt",
-    "src",
-    "srccfg.json"
-  ]
-}

@@ -1,19 +1,31 @@
 use std::{
     path::Path, 
     fs::File,
-    io::Write
+    io::Write,
+    env
 };
 
 use crate::config::SourcererConfig;
 
 pub fn init() {
     let path = Path::new("srccfg.json");
+    println!("{}", env::current_dir().unwrap().file_name().unwrap().to_str().unwrap());
     if path.exists() {
         println!("Config file for this project already exists");
         return;
     }
     let config = SourcererConfig{
-        include: vec![]
+        name: match env::current_dir() {
+            Ok(p) => match p.file_name() {
+                Some(f) => match f.to_str() {
+                    Some(f) => f.to_string(),
+                    None => panic!()
+                },
+                None => panic!()
+            },
+            Err(_) => panic!()
+        },
+        ..Default::default()
     };
     let mut file = match File::create(path) {
         Ok(f) => f,

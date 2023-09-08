@@ -8,10 +8,22 @@ use std::{
     io::Read,
     fmt
 };
+use core::default::Default;
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Default)]
 pub struct SourcererConfig {
-    pub include: Vec<String>
+    pub include: Vec<String>,
+    pub ftp: Option<FTPConfig>,
+    pub name: String
+}
+
+#[derive(Deserialize, Serialize, Debug, Default, Clone)]
+pub struct FTPConfig {
+    pub host: String,
+    pub port: u16,
+    pub username: String,
+    pub password: String,
+    pub dir: String
 }
 
 #[derive(Debug)]

@@ -10,8 +10,8 @@ use crate::{
     config::SourcererConfig
 };
 
-pub fn calculate(config: SourcererConfig) -> (BTreeMap<String, String>, String) {
-    let data = calculate_hashes(config.include);
+pub fn calculate(config: &SourcererConfig) -> (BTreeMap<String, String>, String) {
+    let data = calculate_hashes(&config.include);
 
     let digest = sha256_digest(serde_json::to_string(&data).unwrap_or_default().as_bytes()).unwrap();
 

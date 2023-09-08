@@ -37,7 +37,7 @@ fn main() {
                     exit(0);
                 }
             };
-            let (files, project) = commands::calculate(config);
+            let (files, project) = commands::calculate(&config);
             println!("File hashes:\n{:#?}", files);
             println!("Project hash: {}", project);
         },
@@ -52,7 +52,7 @@ fn main() {
                     exit(0);
                 }
             };
-            add(config, args.collect());
+            add(&config, args.collect());
         },
         "syncctl" => {
             let config = match get_config() {
@@ -62,7 +62,7 @@ fn main() {
                     exit(0);
                 }
             };
-            sync_cloud_to_local(config);
+            sync_cloud_to_local(&config);
         }
         "syncltc" => {
             let config = match get_config() {
@@ -72,7 +72,7 @@ fn main() {
                     exit(0);
                 }
             };
-            sync_local_to_cloud(config);
+            sync_local_to_cloud(&config);
         }
         _ => {
             println!("Unknown command `{}`.\nExiting...", command);

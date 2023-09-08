@@ -6,13 +6,18 @@ use std::{
 
 use crate::config::SourcererConfig;
 
-pub fn add(config: SourcererConfig, params: Vec<String>) {
+pub fn add(config: &SourcererConfig, params: Vec<String>) {
     if params.is_empty() {
         println!("No files provided");
         return;
     }
     let mut new = SourcererConfig {
-        ..config
+        include: config.include.clone(),
+        ftp: match &config.ftp {
+            Some(ftp) => Some(ftp.clone()),
+            None => None
+        },
+        name: config.name.clone(),
     };
     for param in &params {
         if !new.include.contains(&param) {

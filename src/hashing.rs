@@ -31,7 +31,7 @@ pub fn sha256_digest<R: Read>(mut reader: R) -> Result<Digest, ()> {
     Ok(context.finish())
 }
 
-pub fn calculate_hashes(include: Vec<String>) -> BTreeMap<String, String> {
+pub fn calculate_hashes(include: &[String]) -> BTreeMap<String, String> {
     let mut data = BTreeMap::new();
 
     for item in include {
