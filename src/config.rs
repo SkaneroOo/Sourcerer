@@ -21,7 +21,7 @@ pub struct SourcererConfig {
 pub struct FTPConfig {
     pub host: String,
     pub port: u16,
-    pub username: String,
+    pub user: String,
     pub password: String,
     pub dir: String
 }
