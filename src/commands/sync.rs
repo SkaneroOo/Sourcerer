@@ -14,7 +14,7 @@ pub fn sync_cloud_to_local(config: &SourcererConfig) {
 
     let ftp_config = config.ftp.as_ref().unwrap_or_else(|| unreachable!());
 
-    let (files, total) = calculate(&config);
+    let (_files, _total) = calculate(&config);
 
     let mut connection = match FtpStream::connect(
         format!("{}:{}", ftp_config.host, ftp_config.port)
@@ -44,7 +44,7 @@ pub fn sync_cloud_to_local(config: &SourcererConfig) {
         exit(0);
     });
     
-    let hashes = connection.retr("hashes.json", |stream| {
+    let _hashes = connection.retr("hashes.json", |stream| {
         let mut contents = String::new();
         stream.read_to_string(&mut contents).unwrap_or_else(|e| {
             println!("{}.\nExiting...", e);
